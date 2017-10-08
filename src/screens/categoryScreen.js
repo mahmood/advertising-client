@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Image } from 'react-native';
-import { Text, Icon } from 'native-base';
+import { View, StyleSheet, Image, Dimensions } from 'react-native';
+import { Text, Icon, Container, Content, Col, Row, Grid } from 'native-base';
+import CategoryItem from '../components/categoryItem';
 
 class CategoryScreen extends Component {
   static navigationOptions = {
@@ -17,17 +18,20 @@ class CategoryScreen extends Component {
   };
   render() {
     return (
-      <View style={styles.container}>
-        <Text>دسته بندی</Text>
-      </View>
+      <Container>
+        <Content padder>
+          <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
+            <CategoryItem/>
+            <CategoryItem/>
+            <CategoryItem/>
+            <CategoryItem/>
+            <CategoryItem/>
+            <CategoryItem/>
+          </View>
+        </Content>
+      </Container>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'flex-start'
-  }
-});
 
 export default CategoryScreen;

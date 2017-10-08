@@ -34,7 +34,6 @@ class HomeScreen extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     products: state.product.products
   }

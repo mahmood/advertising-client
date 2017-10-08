@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Image } from 'react-native';
-import { Text, Icon } from 'native-base';
+import { Text, Icon, Form,Container, Item, Input, Content } from 'native-base';
 
 class AddAdvScreen extends Component {
   static navigationOptions = {
@@ -17,9 +17,22 @@ class AddAdvScreen extends Component {
   };
   render() {
     return (
-      <View style={styles.container}>
-        <Text>دسته بندی</Text>
-      </View>
+      <Content padder>
+        <Form>
+          <Item>
+            <Input placeholder="نام آگهی" style={{ textAlign: 'right', fontFamily: 'IRANSansMobile' }}/>
+          </Item>
+          <Item>
+            <Input placeholder="نام آگهی" style={{ textAlign: 'right', fontFamily: 'IRANSansMobile' }}/>
+          </Item>
+          <Item>
+            <Input placeholder="نام آگهی" style={{ textAlign: 'right', fontFamily: 'IRANSansMobile' }}/>
+          </Item>
+          <Item>
+            <Input placeholder="نام آگهی" style={{ textAlign: 'right', fontFamily: 'IRANSansMobile' }}/>
+          </Item>
+        </Form>
+      </Content>
     );
   }
 }

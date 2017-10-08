@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Image, Dimensions } from 'react-native';
-import { Text, Icon, Container, Content, Col, Row, Grid } from 'native-base';
+import { Text, Container, Content, Icon } from 'native-base';
 import CategoryItem from '../components/categoryItem';
+import { connect } from 'react-redux';
+import { fetchCategories } from '../actions/categoryActions';
 
 class CategoryScreen extends Component {
   static navigationOptions = {
@@ -16,17 +18,15 @@ class CategoryScreen extends Component {
       <Icon name="menu" style={{color: tintColor}} />
     ),
   };
+  componentDidMount = () => {
+    this.props.fetchCategories();
+  }
   render() {
     return (
       <Container>
         <Content padder>
           <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
-            <CategoryItem/>
-            <CategoryItem/>
-            <CategoryItem/>
-            <CategoryItem/>
-            <CategoryItem/>
-            <CategoryItem/>
+            {this.props.category && this.props.category.map(item => <CategoryItem key={item.id} {...item} /> )}
           </View>
         </Content>
       </Container>
@@ -34,4 +34,11 @@ class CategoryScreen extends Component {
   }
 }
 
-export default CategoryScreen;
+function mapStateToProps(state) {
+  return {
+    category: state.category.data
+  }
+}
+
+
+export default connect(mapStateToProps, { fetchCategories })(CategoryScreen);

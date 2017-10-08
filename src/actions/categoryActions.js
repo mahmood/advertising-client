@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_PRODUCT } from '../constants/actionTypes';
+import { FETCH_CATEGORY } from '../constants/actionTypes';
 import { Platform } from 'react-native';
 import config from '../constants/config';
 
@@ -11,11 +11,11 @@ if (Platform.OS === 'ios') {
   apiEndPoint = config.devApiEndPoint.android;  
 }
 
-export const fetchProducts = () => {
+export const fetchCategories = () => {
   return dispatch => {
-    axios.get(`${apiEndPoint}/api/v1/product`)
+    axios.get(`${apiEndPoint}/api/v1/category`)
       .then(res => {
-        dispatch({ type: FETCH_PRODUCT, data: res.data });
+        dispatch({ type: FETCH_CATEGORY, data: res.data.data });
       }).catch(error => {
         console.log(error);
       })

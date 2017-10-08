@@ -3,13 +3,31 @@ import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Alert } from 'rea
 import { Icon } from 'native-base';
 
 class CategoryItem extends Component {
+  renderIcon(slug) {
+    switch(slug) {
+      case 'car': 
+        return 'car';
+      case 'home-accesorry':
+        return 'briefcase'
+      case 'home':
+        return 'home';
+      case 'game':
+        return 'game-controller-b';
+      case 'animal':
+        return 'logo-octocat';
+      case 'music':
+        return 'musical-notes'
+      default:
+        return 'infinite'
+    }
+  }
   render() {
-    
+    const { name, slug } = this.props;
     return (
-      <TouchableOpacity onPress={() => Alert.alert('s')}>
+      <TouchableOpacity onPress={() => Alert.alert(name)}>
       <View style={styles.box}>
-        <Text style={styles.catIcon}><Icon style={{ fontSize: 35, color: '#424344' }} name="home" /></Text>
-        <Text style={styles.catName}>املاک</Text>
+        <Text style={styles.catIcon}><Icon style={{ fontSize: 35, color: '#424344' }} name={this.renderIcon(slug)} /></Text>
+        <Text style={styles.catName}>{name}</Text>
       </View>
       </TouchableOpacity>
     );

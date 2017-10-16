@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Image } from 'react-native';
-import { Button, Text, Icon } from 'native-base';
+import { Button, Text, Icon, Item, Input, Form } from 'native-base';
 import { connect } from 'react-redux';
 import * as actions from '../actions/testActions';
 
@@ -20,8 +20,11 @@ class SearchScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>جستجو</Text>
-        <Button onPress={() => this.props.goChat() }><Text>برو به چت</Text></Button>
+        <Item last>
+          <Input style={{ writingDirection: 'ltr', alignItems: 'flex-start', justifyContent: 'flex-start', textAlign:'right' }} placeholder="متن جستجو" />
+          <Icon active name='search' />
+        </Item>
+        {/* <Button onPress={() => this.props.goChat() }><Text>برو به چت</Text></Button> */}
       </View>
     );
   }
@@ -29,7 +32,8 @@ class SearchScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'flex-start'
+    flex:1,
+    alignItems: 'flex-start',
   }
 });
 

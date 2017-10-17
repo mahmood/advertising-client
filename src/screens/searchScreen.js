@@ -28,15 +28,29 @@ class SearchScreen extends Component {
   };
   
   componentDidMount = () => {
+    AsyncStorage.clear();
     AsyncStorage.getItem('searchHistory').then(value => {
-      this.setState({ searchHistory: JSON.parse(value) });
+      if(value !== undefined && value !== null) {
+        this.setState({ searchHistory: JSON.parse(value) });
+      }
     });
   }
   
+  uuid = () => {
+      function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+          .toString(16)
+          .substring(1);
+      }
+      return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+        s4() + '-' + s4() + s4() + s4();
+    }
+
   async onSearchFormSubmit () {
     const { search } = this.state;
     const history = this.state.searchHistory;
-    const newHistory = [ ...history, { key: search } ];
+    console.log(history);
+    const newHistory = [ ...history, { key: this.uuid(), name: search } ];
     await AsyncStorage.setItem('searchHistory', JSON.stringify(newHistory));
     await AsyncStorage.getItem('searchHistory').then(value => {
       this.setState({ searchHistory: JSON.parse(value) });
@@ -59,7 +73,7 @@ class SearchScreen extends Component {
         <View style={styles.searchHistoryContainer}>
           <FlatList
             data={this.state.searchHistory}
-            renderItem={ (({ item }) => <Text style={styles.searchHistoryItem}>{item.key}</Text>) }
+            renderItem={ (({ item }) => <Text style={styles.searchHistoryItem}>{item.name}</Text>) }
           />
         </View>
       </View>

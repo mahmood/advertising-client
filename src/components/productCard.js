@@ -13,14 +13,14 @@ class ProductCard extends Component {
     }
   }
   render() {
-    const { name, created_at, price, image } = this.props;
+    const { name, formatedDate, price, image } = this.props;
     return (
       <TouchableOpacity onPress={() => Alert.alert(name)}>
         <View style={styles.cart}>
           <View style={styles.info}>
             <Text style={styles.infoText}>{name}</Text>
             <View style={styles.cartInfoDetail}>
-              <Text style={styles.cartInfoTime}>{created_at}</Text>
+              <Text style={styles.cartInfoTime}>{formatedDate}</Text>
               <Text style={styles.cartInfoPrice}>{price}</Text>
             </View>
           </View>

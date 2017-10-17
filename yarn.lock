@@ -2242,6 +2242,10 @@ istanbul-reports@^1.1.2:
   dependencies:
     handlebars "^4.0.3"
 
+jalaali-js@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/jalaali-js/-/jalaali-js-1.0.0.tgz#a990e7c9d228cb01b847e0015ff6b3bc31da4693"
+
 jest-changed-files@^21.2.0:
   version "21.2.0"
   resolved "https://registry.yarnpkg.com/jest-changed-files/-/jest-changed-files-21.2.0.tgz#5dbeecad42f5d88b482334902ce1cba6d9798d29"
@@ -2937,6 +2941,14 @@ minimist@~0.0.1:
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
     minimist "0.0.8"
+
+moment-jalaali@^0.7.2:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/moment-jalaali/-/moment-jalaali-0.7.2.tgz#b26505ba6c5af4785a7fee132a193405e60f21ba"
+  dependencies:
+    jalaali-js "^1.0.0"
+    moment "^2.18.1"
+    rimraf "^2.6.1"
 
 moment@^2.18.1:
   version "2.18.1"

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, Alert, Platform } from 'react-native';
 import config from '../constants/config';
+import moment from 'moment-jalaali';
+moment.loadPersian();
 
 class ProductCard extends Component {
   loadImage(url) {
@@ -13,14 +15,15 @@ class ProductCard extends Component {
     }
   }
   render() {
-    const { name, formatedDate, price, image } = this.props;
+    const { name, formatedDate, price, image, created_at } = this.props;
     return (
       <TouchableOpacity onPress={() => Alert.alert(name)}>
         <View style={styles.cart}>
           <View style={styles.info}>
             <Text style={styles.infoText}>{name}</Text>
             <View style={styles.cartInfoDetail}>
-              <Text style={styles.cartInfoTime}>{formatedDate}</Text>
+              {<Text style={styles.cartInfoTime}>{formatedDate}</Text>}
+              <Text style={styles.cartInfoTime}>{moment(created_at, "YYYY-MM-DD h:m:s").format("jD jMMMM jYYYY")}</Text>
               <Text style={styles.cartInfoPrice}>{price}</Text>
             </View>
           </View>

@@ -28,9 +28,8 @@ class SearchScreen extends Component {
   };
   
   componentDidMount = () => {
-    AsyncStorage.clear();
     AsyncStorage.getItem('searchHistory').then(value => {
-      if(value !== undefined && value !== null) {
+      if(value !== null) {
         this.setState({ searchHistory: JSON.parse(value) });
       }
     });
@@ -47,14 +46,17 @@ class SearchScreen extends Component {
     }
 
   async onSearchFormSubmit () {
+    // search history
     const { search } = this.state;
     const history = this.state.searchHistory;
-    console.log(history);
     const newHistory = [ ...history, { key: this.uuid(), name: search } ];
     await AsyncStorage.setItem('searchHistory', JSON.stringify(newHistory));
     await AsyncStorage.getItem('searchHistory').then(value => {
       this.setState({ searchHistory: JSON.parse(value) });
     });
+
+    //do search stuff
+    this.props.goChat();
   }
 
   render() {
@@ -105,7 +107,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     padding: 6,
     borderBottomWidth: 2,
-    borderBottomColor: '#000'
+    borderBottomColor: '#000',
   }
 });
 

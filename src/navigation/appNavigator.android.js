@@ -35,6 +35,7 @@ const MainScreenNavigator = TabNavigator({
 export const AppNavigator = StackNavigator({
   Home: { screen: MainScreenNavigator },
   Chat: { screen: ChatScreen },
+  advDetails: { screen: advDetails }
 });
 
 const AppWithNavigationState = ({ dispatch, nav }) => (

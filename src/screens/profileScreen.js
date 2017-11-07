@@ -19,7 +19,7 @@ class ProfileScreen extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <View style={style.menuItem}>
+        <View style={styles.menuItem}>
           <TouchableOpacity onPress={() => console.log ('sd')}>
             <Text style={styles.loginButton}>وارد شوید</Text>
           </TouchableOpacity>

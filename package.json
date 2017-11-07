@@ -13,6 +13,7 @@
 		"native-base": "^2.3.2",
 		"react": "^16.0.0",
 		"react-native": "^0.49.5",
+		"react-native-communications": "^2.2.1",
 		"react-native-material-bottom-navigation": "^0.5.2",
 		"react-navigation": "^1.0.0-beta.13",
 		"react-redux": "^5.0.6",

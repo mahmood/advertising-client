@@ -22,19 +22,19 @@ class ProductCard extends Component {
     }
   }
   onAdvPressed(data) {
-    //dispatch advDetailsAction
     this.props.goAdvDetails(data);
   }
   render() {
-    const { name, price, image, created_at, id } = this.props;
+    const { name, price, image, category, telphone ,created_at, id, description } = this.props;
+    const data = { id, name, price, image, category, telphone, description, created_at };
     return (
-      <TouchableOpacity onPress={() => this.onAdvPressed({ id, data: { id, name, price, image, created_at } })}>
+      <TouchableOpacity onPress={() => this.onAdvPressed({ id, data })}>
         <View style={styles.cart}>
           <View style={styles.info}>
             <Text style={styles.infoText}>{name}</Text>
             <View style={styles.cartInfoDetail}>
               <Text style={styles.cartInfoTime}>{moment(created_at, "YYYY-MM-DD h:m:s").format("jD jMMMM jYYYY")}</Text>
-              <Text style={styles.cartInfoPrice}>{price}</Text>
+              <Text style={styles.cartInfoPrice}>{price} تومان </Text>
             </View>
           </View>
           <View style={styles.image}>

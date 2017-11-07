@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Image, Platform, Dimensions, Share, TouchableOpacity } from 'react-native';
+import { phonecall } from 'react-native-communications';
 import { Text, Icon, Form, Container, Item, Input, Content, Button } from 'native-base';
 import config from '../constants/config';
 
@@ -11,10 +12,7 @@ class advDetailsScreen extends Component {
       fontSize: 17,
       fontFamily: 'IRANSansMobile',
       fontWeight: '400'
-    },
-    tabBarIcon: ({ tintColor }) => (
-      <Icon name="add-circle" style={{color: tintColor}} />
-    ),
+    }
   });
   loadImage(url) {
     // just for Development
@@ -25,15 +23,16 @@ class advDetailsScreen extends Component {
       return `${config.devApiEndPoint.android}/uploads/${url}`;
     }
   }
-  _shareTextMessage () {
+  shareProduct(productId) {
     Share.share({
-      message: 'Such sharing! Much wow!'
+      message: `${config.url}/ads/${productId}`
     })
-      .then(this._showResult)
+      .then()
       .catch(err => console.log(err))
   }
+
   render() {
-    const { image, name } = this.props.navigation.state.params.data;
+    const { id, image, name, category, telphone, description } = this.props.navigation.state.params.data;
     return (
       <Container style={styles.container}>
         <Content>
@@ -42,18 +41,20 @@ class advDetailsScreen extends Component {
         </View>
         <View style={{ flex: 1, flexDirection: 'row' }}>
           <View style={{ flex: 3 }}>
-            <Button style={styles.callButton} danger block>
+            <Button onPress={() => phonecall(telphone, true)} style={styles.callButton} danger block>
               <Text style={styles.callButtonText}>تماس با آگهی دهنده</Text>
             </Button>
           </View>
           <View style={{ flex: 1, justifyContent: 'center' }}>
-            <TouchableOpacity onPress={this._shareTextMessage}>
+            <TouchableOpacity onPress={() => this.shareProduct(id)}>
               <Icon name="share" style={{ color: '#3d3d3d', textAlign: 'center'}} />
             </TouchableOpacity>
           </View>
         </View>
-        <View style={styles.titleContainer}> 
+        <View style={styles.titleContainer}>
+          <Text style={{ fontFamily: "IRANSansMobile", color: '#828282', fontSize: 14 }}>{category}</Text>
           <Text style={styles.title}>{name}</Text>
+          <Text style={{ fontFamily: "IRANSansMobile", fontSize: 17 ,textAlign: "left", lineHeight: 30, marginTop: 20 }}>{description}</Text>
         </View>
         </Content>
       </Container>
@@ -86,12 +87,12 @@ const styles = StyleSheet.create({
   titleContainer: {
     alignItems: 'flex-start',
     marginLeft: 10,
-    marginTop: 25  
+    marginTop: 15
   },
   title: {
     fontFamily: 'IRANSansMobile',
     fontWeight: 'bold',
-    fontSize: 18,
+    fontSize: 21,
     color: '#3d3d3d'
   }
 });

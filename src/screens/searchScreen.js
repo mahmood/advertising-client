@@ -33,7 +33,7 @@ class SearchScreen extends Component {
         this.setState({ searchHistory: JSON.parse(value) });
       }
     });
-  }
+  };
   
   uuid = () => {
       function s4() {
@@ -43,7 +43,7 @@ class SearchScreen extends Component {
       }
       return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
         s4() + '-' + s4() + s4() + s4();
-    }
+    };
 
   async onSearchFormSubmit () {
     // search history

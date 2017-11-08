@@ -20,7 +20,7 @@ class ProfileScreen extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.menuItem}>
-          <TouchableOpacity onPress={() => console.log ('sd')}>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
             <Text style={styles.loginButton}>وارد شوید</Text>
           </TouchableOpacity>
         </View>

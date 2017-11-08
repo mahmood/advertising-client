@@ -9,6 +9,9 @@ import CategoryScreen from '../screens/categoryScreen';
 import AddAdvScreen from '../screens/addAdvScreen';
 import SearchScreen from '../screens/searchScreen';
 import ProfileScreen from '../screens/profileScreen';
+import advDetails from '../screens/advDetailsScreen';
+import Login from '../screens/loginScreen';
+
 
 const MainScreenNavigator = TabNavigator({
   Home: { screen: HomeScreen },
@@ -35,7 +38,8 @@ const MainScreenNavigator = TabNavigator({
 export const AppNavigator = StackNavigator({
   Home: { screen: MainScreenNavigator },
   Chat: { screen: ChatScreen },
-  advDetails: { screen: advDetails }
+  advDetails: { screen: advDetails },
+  Login: { screen: Login }
 });
 
 const AppWithNavigationState = ({ dispatch, nav }) => (

@@ -1,29 +1,58 @@
 import React, {Component} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
-import {Icon, Text} from 'native-base';
+import {Icon, Text, Item, Input, Button} from 'native-base';
+import { connect } from 'react-redux';
+import { signIn } from '../actions/authActions';
 
 class ProfileScreen extends Component {
+  constructor (props) {
+    super(props);
+
+    this.state = {
+      email: '',
+      password: ''
+    };
+    this.onLoginButtonPressed = this.onLoginButtonPressed.bind(this);
+  }
   static navigationOptions = {
-    tabBarLabel: 'پروفایل',
-    title: 'پروفایل',
+    title: 'ورود به حساب کاربری',
     headerTitleStyle: {
       fontSize: 19,
       fontFamily: 'IRANSansMobile',
       fontWeight: '400'
-    },
-    tabBarIcon: ({tintColor}) => (
-      <Icon name="person" style={{color: tintColor}}/>
-    ),
+    }
   };
 
+  onLoginButtonPressed(input) {
+    this.props.signIn(input);
+  }
+
   render () {
+    const { email, password } = this.state;
     return (
       <View style={styles.container}>
-        <View style={styles.menuItem}>
-          <TouchableOpacity onPress={() => console.log ('sd')}>
-            <Text style={styles.loginButton}>وارد شوید</Text>
-          </TouchableOpacity>
-        </View>
+        <Item>
+          <Input
+            onSubmitEditing={this.onSearchFormSubmit}
+            onChangeText={ email => this.setState({ email }) }
+            style={styles.searchBarInput}
+            placeholder="ایمیل"
+          />
+          <Icon active name='person' />
+        </Item>
+        <Item last>
+          <Input
+            onSubmitEditing={this.onSearchFormSubmit}
+            onChangeText={ password => this.setState({ password })  }
+            returnKeyType="send" style={styles.searchBarInput}
+            placeholder="رمز عبور"
+            secureTextEntry
+          />
+          <Icon active name='key' />
+        </Item>
+        <Button onPress={() => this.onLoginButtonPressed({email, password})} style={styles.loginButton} success block>
+          <Text style={styles.loginButtonText}>وارد شوید</Text>
+        </Button>
       </View>
     );
   }
@@ -31,18 +60,21 @@ class ProfileScreen extends Component {
 
 const styles = StyleSheet.create ({
   container: {
+    flex:1,
     alignItems: 'flex-start'
   },
-  menuItem: {
-    alignSelf: 'stretch',
-    borderBottomColor: '#ababab',
-    borderBottomWidth: 1
+  searchBarInput: {
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    textAlign:'right',
+    fontFamily: 'IRANSansMobile'
   },
   loginButton: {
-    fontFamily: "IRANSansMobile",
-    padding: 10,
-    textAlign: 'left'
+    margin: 10,
+  },
+  loginButtonText: {
+    fontFamily: 'IRANSansMobile'
   }
 });
 
-export default ProfileScreen;
+export default connect(null, { signIn })(ProfileScreen);

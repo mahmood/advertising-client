@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, Button, Icon } from 'native-base';
+import { AsyncStorage, Text } from 'react-native';
 import configStore from './src/store/configStore';
 import { Provider, connect } from 'react-redux';
 import AppNavigator from './src/navigation/appNavigator';
-//Redux Store
-const store = configStore();
+import { PersistGate } from 'redux-persist/es/integration/react';
 
 export default class App extends Component {
   render() {
+    const store = configStore();
     return (
-      <Provider store={store}>
-        <AppNavigator />
+      <Provider store={store.store}>
+        <PersistGate loading={<Text>loading</Text>} persistor={store.persistor}>
+          <AppNavigator />
+        </PersistGate>
       </Provider>
     );
   }

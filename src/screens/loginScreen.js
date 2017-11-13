@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {StyleSheet, TouchableOpacity, View} from 'react-native';
-import {Icon, Text, Item, Input, Button} from 'native-base';
+import React, { Component } from 'react';
+import { StyleSheet, TouchableOpacity, View, Alert } from 'react-native';
+import { Icon, Text, Item, Input, Button } from 'native-base';
 import { connect } from 'react-redux';
 import { signIn } from '../actions/authActions';
 
@@ -24,7 +24,11 @@ class ProfileScreen extends Component {
   };
 
   onLoginButtonPressed(input) {
-    this.props.signIn(input);
+    if (this.state.email && this.state.password){
+      this.props.signIn(input);
+    } else {
+      Alert.alert('خطا', 'لطفا فیلد های ایمیل و رمز عبور را پر نمایید!');
+    }
   }
 
   render () {

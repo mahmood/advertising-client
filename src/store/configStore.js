@@ -1,14 +1,29 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import logger from 'redux-logger';
+import { persistStore, persistCombineReducers } from 'redux-persist';
+import storage from 'redux-persist/es/storage';
 import rootReducer from '../reducers';
+import { composeWithDevTools } from 'redux-devtools-extension';
+
+const config =  {
+  key: 'primary',
+  blacklist: ['nav'],
+  storage
+}
+
+let reducer = persistCombineReducers(config, rootReducer);
+
+console.log(reducer)
 
 const configStore = () => {
   const store = createStore (
-    rootReducer,
-    applyMiddleware(logger, thunk)
+    reducer,
+    composeWithDevTools(
+      applyMiddleware(thunk),
+    )
   );
-  return store;
+  const persistor = persistStore(store)
+  return { persistor, store }
 };
 
 export default configStore;

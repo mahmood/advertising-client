@@ -42,7 +42,7 @@ const AppWithNavigationState = ({ dispatch, nav }) => (
 
 const mapStateToProps = state => {
   return {
-    nav: state.nav,
+    nav: state.reducer.nav,
   }
 };
 

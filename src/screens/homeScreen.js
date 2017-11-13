@@ -35,7 +35,7 @@ class HomeScreen extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    products: state.product.products
+    products: state.reducer.product.products
   }
 }
 

@@ -36,7 +36,7 @@ class CategoryScreen extends Component {
 
 function mapStateToProps(state) {
   return {
-    category: state.category.data
+    category: state.reducer.category.data
   }
 }
 
